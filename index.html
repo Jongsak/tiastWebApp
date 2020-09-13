@@ -35,6 +35,20 @@
   document.addEventListener('init', function(event) {
   var page = event.target;
    function showPosition(position) {
+     const Url = 'https://jongsak-taist.firebaseio.com//logs.json';
+let Data = {
+  latitude:position.coords.latitude,
+  longitude:position.coords.longitude
+};
+const Params = {
+  headers:{ 
+    'Content-Type':'application/json'
+  },
+  body:JSON.stringify(Data),
+  method:'POST'
+};
+console.log(JSON.stringify(Data));
+fetch(Url, Params).then(data=>{return data.json();}).then(res=>{console.log(res);});
     page.querySelector('#latlng').innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 }
 
